@@ -1,25 +1,24 @@
-import logo from './logo.svg';
+import {BrowserRouter as Router, Link, Route } from 'react-router-dom';
 import './App.css';
+import Profile from './components/Profile'
+import Wishlist from './components/Wishlist'
 
 function App() {
+
+  const otherProfile = {
+    name: 'Rocco',
+    email: 'rocco@ga.com'
+  }
+  const wishList = ['90in TV', 'Bag of LC marshmellows','RC']
   return (
+    <Router>
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+     <Profile other={otherProfile}/>
+     <Route exact path="/profile" render={(props)=> <Profile {...props} />}></Route>
+     <Route path="/wishlist" render={(props)=> <Wishlist {...props} list={wishList}/>}></Route>
     </div>
+    </Router>
   );
 }
-
+//other={otherProfile} was passed down as a p
 export default App;
